@@ -4,16 +4,30 @@ import java.util.*;
 class Main {
   
     public static void main(String[] args) {
-      try{
+        Scanner in = new Scanner(System.in);
+        Graph g = new Graph();
+        
+        
+        g.initFromFile("highway_graph.txt");
+        
+        System.out.println("Graph Connected: " + g.isConnected());
+        System.out.print("starting point: ");
+        String start = in.nextLine();
 
-        Heap<Integer> heap = new Heap<Integer>();
-        heap.insert(new Integer(10));
-        heap.insert(new Integer(30));
-        heap.insert(new Integer(15));
+        start= start!=null?"Concord":start;
+        
+        System.out.println("depth-first traversal from " + start + ":");
+        g.depthFirstTrav(start);
+        
+        System.out.println("breadth-first traversal from " + start + ":");
+        g.breadthFirstTrav(start);
+        
+        System.out.println("Dijkstra's algorithm from " + start + ":");
+        g.dijkstra(start);
+        
+        System.out.println("Prim's algorithm from " + start + ":");
+        g.prim(start);
 
-        System.out.println(heap);
-        } catch (NoSuchElementException e) {
-          System.out.println("Invalid command: " + e.toString());
-        }
+       
     }
 }
